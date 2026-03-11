@@ -50,7 +50,6 @@ public class QuantityMeasurementAppTest {
         assertEquals(q1, q2);
     }
 
-    // --- Conversion Tests ---
     @Test
     public void testGenericQuantity_LengthOperations_Conversion() {
         Quantity<LengthUnit> q = new Quantity<>(1.0, LengthUnit.FEET);
@@ -105,7 +104,6 @@ public class QuantityMeasurementAppTest {
     @Test
     public void testImmutability_GenericQuantity() {
         Quantity<LengthUnit> q = new Quantity<>(1.0, LengthUnit.FEET);
-        // No setters exist, only getters
         assertEquals(1.0, q.getValue(), 0.01);
         assertEquals(LengthUnit.FEET, q.getUnit());
     }
@@ -149,8 +147,6 @@ public class QuantityMeasurementAppTest {
 
         assertNotEquals(volume, null);
     }
-
-    // ---------------- Conversion Tests ----------------
 
     @Test
     public void testConversion_LitreToMillilitre() {
@@ -216,7 +212,6 @@ public class QuantityMeasurementAppTest {
         assertEquals(new Quantity<>(2.0, VolumeUnit.GALLON), result);
     }
 
-    // ---------------- Edge Case Tests ----------------
 
     @Test
     public void testZeroVolumeEquality() {
@@ -241,7 +236,6 @@ public class QuantityMeasurementAppTest {
         assertEquals(volume, volume);
     }
 
-    // ---------------- SUBTRACTION TESTS ----------------
 
     @Test
     public void testSubtraction_SameUnit_FeetMinusFeet() {

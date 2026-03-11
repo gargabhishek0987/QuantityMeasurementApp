@@ -80,33 +80,30 @@ public class Length {
         Length l2 = new Length(12.0, LengthUnit.INCHES);
         Length l3 = new Length(1.0, LengthUnit.CENTIMETERS);
 
-        System.out.println("---- Conversion Tests ----");
+        System.out.println("Conversion Test");
         System.out.println("1 Foot to Inches: " + l1.convertTo(LengthUnit.INCHES));
         System.out.println("12 Inches to Feet: " + l2.convertTo(LengthUnit.FEET));
         System.out.println("1 Meter to Feet: " + l3.convertTo(LengthUnit.FEET));
 
-        System.out.println("\n---- Addition Same Unit ----");
         Length sum1 = l1.add(new Length(2.0, LengthUnit.FEET));
         System.out.println("1 ft + 2 ft = " + sum1);
 
-        System.out.println("\n---- Addition Different Units ----");
-        Length sum2 = l1.add(l2);  // 1 ft + 12 inches
+        Length sum2 = l1.add(l2); 
         System.out.println("1 ft + 12 inches (result in feet) = " + sum2);
 
-        System.out.println("\n---- Addition With Target Unit ----");
+        System.out.println(" Addition With Target Unit");
         Length sum3 = l1.add(l2, LengthUnit.INCHES);
         System.out.println("1 ft + 12 inches (result in inches) = " + sum3);
 
-        System.out.println("\n---- Equality Test ----");
+        System.out.println("Equality Test");
         Length oneFoot = new Length(1.0, LengthUnit.FEET);
         Length twelveInches = new Length(12.0, LengthUnit.INCHES);
 
         System.out.println("1 ft equals 12 inches? " + oneFoot.equals(twelveInches));
 
-        System.out.println("\n---- Complex Test ----");
         Length complexSum = new Length(2, LengthUnit.CENTIMETERS)
                 .add(new Length(3, LengthUnit.FEET), LengthUnit.CENTIMETERS);
    
-        System.out.println("2 meters + 3 feet (in meters) = " + complexSum);
+        System.out.println(complexSum);
     }
 }

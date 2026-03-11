@@ -1,9 +1,9 @@
 package quantity;
 
 public enum VolumeUnit implements IMeasurable{
-    LITRE(1.0), // base unit
-    MILLILITRE(0.001), // 1L = 1000ml
-    GALLON(3.78541); // 1L = 3.78541 gallon
+    LITRE(1.0), 
+    MILLILITRE(0.001), 
+    GALLON(3.78541); 
 
     private final double conversionValue;
 

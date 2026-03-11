@@ -19,7 +19,6 @@ public class Quantity<U extends IMeasurable> {
 
     public U getUnit(){return unit;}
 
-    // Convert this unit to the specific target unit
     public Quantity<U> convertTo(U targetUnit){
         if(targetUnit == null){
             throw new IllegalArgumentException("Unit cannot be null");
@@ -34,7 +33,6 @@ public class Quantity<U extends IMeasurable> {
         return new Quantity<U>(round(convertValue), targetUnit);
     }
 
-    // Compares this quantity with other object for equality.
     @Override
     public boolean equals(Object o){
         if(o == this){return true;}
@@ -47,7 +45,6 @@ public class Quantity<U extends IMeasurable> {
 
     }
 
-    // Arithmetic enum
     private enum ArithmeticOperation{
         ADD{
             @Override
@@ -72,32 +69,26 @@ public class Quantity<U extends IMeasurable> {
         public abstract double compute(double thisBase, double otherBase);
     }
 
-    // Add the quantity to the another quantity of the same unit type
     public Quantity<U> add(Quantity<U> other){
         return add(other, unit);
     }
 
-    // Add this quantity to another quantity of the same unit type and return the result in the specific unit.
     public Quantity<U> add(Quantity<U> other, U targetUnit){
         double baseResult = performBaseArithmetic(other, targetUnit, ArithmeticOperation.ADD, true);
         return buildQuantityFromBase(baseResult, targetUnit);
     }
 
-    // Subtracts this quantity from another quantity of the same unit type and return the result in the unit of this quantity
     public Quantity<U> subtract(Quantity<U> other){return subtract(other, unit);}
 
-    // Subtracts this quantity from another quantity of the same unit type and return the result in the specified target unit
     public Quantity<U> subtract(Quantity<U> other, U targetUnit){
         double baseResult = performBaseArithmetic(other, targetUnit, ArithmeticOperation.SUBTRACT, true);
         return buildQuantityFromBase(baseResult, targetUnit);
     }
 
-    // Divide this quantity by another quantity of the same unit type and return the result as a double
     public double divide(Quantity<U> other){
         return performBaseArithmetic(other, null, ArithmeticOperation.Divide, false);
     }
 
-    // Centralized core logic
     private double performBaseArithmetic(Quantity<U> other, U targetUnit, ArithmeticOperation operation, boolean targetUnitRequired){
         validateArithmeticOperands(other, targetUnit, targetUnitRequired);
 
@@ -107,7 +98,6 @@ public class Quantity<U extends IMeasurable> {
         return operation.compute(thisBase, otherBase);
     }
 
-    // Validate this class and another class not be null and belongs to same Unit
     private void validateArithmeticOperands(Quantity<U> quantity, U targetUnit, boolean targetUnitRequired){
         if (quantity == null) {
             throw new IllegalArgumentException("Operand cannot be null");
@@ -132,16 +122,13 @@ public class Quantity<U extends IMeasurable> {
         }
     }
 
-    // Helper Builder
-    private Quantity<U> buildQuantityFromBase(double baseValue, U targetUnit){
-        double convertedValue = targetUnit.convertFromBaseUnit(baseValue);
-        return new Quantity<>(round(convertedValue), targetUnit);
-    }
+    // private Quantity<U> buildQuantityFromBase(double baseValue, U targetUnit){
+    //     double convertedValue = targetUnit.convertFromBaseUnit(baseValue);
+    //     return new Quantity<>(round(convertedValue), targetUnit);
+    // }
 
-    // Round the value to two decimal value
     private double round(double value){return (double) Math.round(value*100)/100;}
 
-    // Override toString method
     @Override
     public String toString(){return String.format("%.2f %s", value, unit);}
 

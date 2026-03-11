@@ -1,10 +1,10 @@
 package quantity;
 
 public enum LengthUnit implements IMeasurable{
-    FEET(12.0), // 1 feet = 12 inches
-    INCHES(1.0), // 1 inch = 1 inch
-    YARDS(36.0), // 1 yard = 36 inches
-    CENTIMETERS(0.393701); // 1 cm = 0.393701 inch
+    FEET(12.0), 
+    INCHES(1.0),
+    YARDS(36.0), 
+    CENTIMETERS(0.393701); 
 
     private final double conversionFactor;
 

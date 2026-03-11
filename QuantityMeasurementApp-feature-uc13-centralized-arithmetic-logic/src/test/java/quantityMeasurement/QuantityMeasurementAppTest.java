@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 public class QuantityMeasurementAppTest {
     private static final double DELTA = 0.01;
 
-    // ---------------- ADDITION ----------------
 
     @Test
     public void testAdd_BehaviorPreserved() {
@@ -19,7 +18,6 @@ public class QuantityMeasurementAppTest {
         assertEquals(LengthUnit.FEET, result.getUnit());
     }
 
-    // ---------------- SUBTRACTION ----------------
 
     @Test
     public void testSubtract_BehaviorPreserved() {
@@ -32,7 +30,6 @@ public class QuantityMeasurementAppTest {
         assertEquals(LengthUnit.FEET, result.getUnit());
     }
 
-    // ---------------- DIVISION ----------------
 
     @Test
     public void testDivide_BehaviorPreserved() {
@@ -44,7 +41,6 @@ public class QuantityMeasurementAppTest {
         assertEquals(1.0, result, DELTA);
     }
 
-    // ---------------- VALIDATION CONSISTENCY ----------------
 
     @Test
     public void testValidation_NullOperand_ConsistentAcrossOperations() {
@@ -55,7 +51,6 @@ public class QuantityMeasurementAppTest {
         assertThrows(IllegalArgumentException.class, () -> q.divide(null));
     }
 
-    // ---------------- ROUNDING ----------------
 
     @Test
     public void testRounding_Addition_TwoDecimalPlaces() {
@@ -77,7 +72,6 @@ public class QuantityMeasurementAppTest {
         assertEquals(3.5, result, DELTA);
     }
 
-    // ---------------- TARGET UNIT ----------------
 
     @Test
     public void testExplicitTargetUnit_Addition() {
@@ -90,7 +84,6 @@ public class QuantityMeasurementAppTest {
         assertEquals(WeightUnit.GRAM, result.getUnit());
     }
 
-    // ---------------- IMMUTABILITY ----------------
 
     @Test
     public void testImmutability_AfterAdd() {
@@ -103,7 +96,6 @@ public class QuantityMeasurementAppTest {
         assertEquals(12.0, q2.getValue(), DELTA);
     }
 
-    // ---------------- CHAIN OPERATIONS ----------------
 
     @Test
     public void testChainedOperations() {
